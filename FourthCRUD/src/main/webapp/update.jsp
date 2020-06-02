@@ -22,15 +22,15 @@
     <div>
         <form method="post" action="edit">
             <input type="hidden" name="id" value="<%= request.getParameter("id") %>">
-            Login: <input type="text" name="login" value="<%= request.getAttribute("login") %>"/><br/>
+            Login: <input type="text" name="edit_login" value="<%= request.getAttribute("edit_login") %>"/><br/>
 
-            Password: <input type="password" name="password" value="<%= request.getAttribute("password") %>"/><br/>
+            Password: <input type="password" name="edit_password" value="<%= request.getAttribute("edit_password") %>"/><br/>
 
-            Age: <input type="number" name="age" value="<%= request.getAttribute("age") %>"/><br/>
+            Age: <input type="number" name="edit_age" value="<%= request.getAttribute("edit_age") %>"/><br/>
 
-            Gender: <input type="text" name="gender" value="<%= request.getAttribute("gender") %>"/><br/>
+            Gender: <input type="text" name="edit_gender" value="<%= request.getAttribute("edit_gender") %>"/><br/>
 
-            Role: <input type="text" name="role" value="<%= request.getAttribute("role") %>"/><br/>
+            Role: <input type="text" name="edit_role" value="<%= request.getAttribute("edit_role") %>"/><br/>
 
             <button type="submit">Update</button>
         </form>

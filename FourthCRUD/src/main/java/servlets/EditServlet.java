@@ -26,11 +26,11 @@ public class EditServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        req.setAttribute("login", user.getLogin());
-        req.setAttribute("password", user.getPassword());
-        req.setAttribute("age", user.getAge());
-        req.setAttribute("gender", user.getGender());
-        req.setAttribute("role", user.getRole());
+        req.setAttribute("edit_login", user.getLogin());
+        req.setAttribute("edit_password", user.getPassword());
+        req.setAttribute("edit_age", user.getAge());
+        req.setAttribute("edit_gender", user.getGender());
+        req.setAttribute("edit_role", user.getRole());
 
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/update.jsp");
         requestDispatcher.forward(req, resp);
@@ -39,11 +39,11 @@ public class EditServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Long id = Long.parseLong(req.getParameter("id"));
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
-        int age = Integer.parseInt(req.getParameter("age"));
-        String gender = req.getParameter("gender");
-        String role = req.getParameter("role");
+        String login = req.getParameter("edit_login");
+        String password = req.getParameter("edit_password");
+        int age = Integer.parseInt(req.getParameter("edit_age"));
+        String gender = req.getParameter("edit_gender");
+        String role = req.getParameter("edit_role");
 
         try {
             service.updateUser(id, login, password, age, gender, role);

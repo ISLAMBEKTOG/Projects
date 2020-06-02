@@ -2,41 +2,34 @@ package filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/admin/*")
+@WebFilter("/admin/*")
 public class AdminFilter implements Filter {
-
-    public void init(FilterConfig fConfig) throws ServletException {
-    }
-
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        HttpServletRequest req = (HttpServletRequest) servletRequest;
+        HttpServletResponse res = (HttpServletResponse) servletResponse;
 
         HttpSession session = req.getSession(false);
 
         if (session == null) {
             res.sendRedirect("/");
         } else {
-            Cookie[] cookies = req.getCookies();
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("client_role")) {
-                    String role = cookie.getValue();
-                    if (role.equals("admin")) {
-                        chain.doFilter(request, response);
-                    } else {
-                        res.sendRedirect("/");
-                    }
+
+            String role = (String) session.getAttribute("client_role");
+            if (role != null) {
+                if (role.equals("admin")) {
+                    filterChain.doFilter(servletRequest, servletResponse);
+                } else {
+                    res.sendRedirect("/");
                 }
+            } else {
+                res.sendRedirect("/");
             }
         }
-    }
-
-    public void destroy() {
     }
 }
