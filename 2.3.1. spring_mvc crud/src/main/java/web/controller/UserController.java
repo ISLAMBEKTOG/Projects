@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import web.model.User;
 import web.service.UserService;
@@ -30,11 +31,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/users/add")
-    public String addUser(HttpServletRequest request) {
-        String name = request.getParameter("name");
-        int age = Integer.parseInt(request.getParameter("age"));
-        String gender = request.getParameter("gender");
-
+    public String addUser(@RequestParam String name, @RequestParam int age, @RequestParam String gender) {
         User user = new User(name, age, gender);
 
         userService.addUser(user);
@@ -51,11 +48,10 @@ public class UserController {
     }
 
     @GetMapping(value = "/users/edit")
-    public ModelAndView updateUserPage(HttpServletRequest request) {
-        ModelAndView modelAndView = new ModelAndView();
-
-        Long id = Long.parseLong(request.getParameter("id"));
+    public ModelAndView updateUserPage(@RequestParam long id) {
         User user = userService.getUserById(id);
+
+        ModelAndView modelAndView = new ModelAndView();
 
         modelAndView.setViewName("update");
         modelAndView.addObject("userId", id);
@@ -65,11 +61,10 @@ public class UserController {
     }
 
     @PostMapping(value = "users/edit/submit")
-    public String updateUser(HttpServletRequest request) {
-        Long id = Long.parseLong(request.getParameter("id"));
-        String name = request.getParameter("name");
-        int age = Integer.parseInt(request.getParameter("age"));
-        String gender = request.getParameter("gender");
+    public String updateUser(@RequestParam long id,
+                             @RequestParam String name,
+                             @RequestParam int age,
+                             @RequestParam String gender) {
 
         User user = new User(name, age, gender);
 
