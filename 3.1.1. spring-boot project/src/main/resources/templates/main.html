@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Users</title>
+</head>
+<body>
+<div>
+    <a th:href="'/logout'">Logout</a>
+</div>
+<div>
+    <h2>Add user</h2>
+</div>
+<div>
+    <form method="post" action="/admin/add">
+        Login: <input type="text" name="login"/><br/><br/>
+
+        Password: <input type="text" name="password"/><br/><br/>
+
+        Age: <input type="number" name="age"/><br/><br/>
+
+        Role:
+        <label>
+            <select name="role">
+                <option th:each="role : ${userService.allRoles}"
+                        th:value="${role.name}"
+                        th:text="${role.name}"></option>
+            </select>
+        </label><br/><br/>
+
+        <button type="submit">Add</button>
+    </form>
+</div>
+
+<div>
+    <div>
+        <h2>List of users</h2>
+    </div>
+    <div>
+        <table th:border="2">
+            <tr>
+                <td>Id</td>
+                <td>Login</td>
+                <td>Password</td>
+                <td>Age</td>
+                <td>Roles</td>
+                <td>Actions</td>
+            </tr>
+            <tr th:each="user : ${userService.allUsers}">
+                <td th:text="${user.getId()}"></td>
+                <td th:text="${user.getLogin()}"></td>
+                <td th:text="${user.getPassword()}"></td>
+                <td th:text="${user.getAge()}"></td>
+                <td>
+                    <span th:each="role : ${userService.getRolesById(user.getId())}"
+                       th:value="${role.name}"
+                       th:text="${role.name} + ' '"></span>
+                </td>
+                <td>
+                    <a th:href="'/admin/delete?id=' + ${user.getId()}">Delete</a><br/>
+                    <a th:href="'/admin/edit?id=' + ${user.getId()}">Update</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
