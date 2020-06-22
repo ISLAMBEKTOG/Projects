@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title>Admin Page</title>
+
+    <style>
+        html {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<nav class="navbar navbar-dark sticky-top bg-dark" style="height: 45px">
+    <p class="navbar-brand" th:text="${curUserEmail} + ' with roles: ' + ${curUserRoles}"/>
+    <a class="navbar-brand mb-3" href="/logout">Logout</a>
+</nav>
+
+<div class="admin-panel mt-3">
+    <div class="row">
+        <!-- Menu -->
+        <div class="menu col-md-3">
+            <nav class="nav flex-column">
+                <a class="nav-link active btn btn-primary mt-2 btn-lg btn-block text-left" href="/user">User</a>
+            </nav>
+        </div>
+
+        <!-- Admin panel-->
+        <div class="panel col-md-9">
+
+            <h2 class="mb-3">User information-page</h2>
+
+            <div id="adminCrudPage" class="container">
+                <div class="tab-content mt-3">
+                    <!-- Users Table -->
+                    <div class="tab-pane active" id="usersTable">
+                        <h4>About user</h4>
+
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Age</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row" th:text="${user.getId()}"></th>
+                                <td th:text="${user.getFirstName()}"></td>
+                                <td th:text="${user.getLastName()}"></td>
+                                <td th:text="${user.getAge()}"></td>
+                                <td th:text="${user.getEmail()}"></td>
+                                <td>
+                                    <span th:each="role : ${user.getRoles()}"
+                                          th:value="${role.name}"
+                                          th:text="${role.name} + ' '"></span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
