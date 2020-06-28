@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/js/main.js" th:src="@{/js/main.js}"></script>
+    <script type="text/javascript" src="../static/js/page.js" th:src="@{/js/page.js}"></script>
+    <title>Admin Page</title>
+
+    <style>
+        html {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<nav class="navbar navbar-dark sticky-top bg-dark" style="height: 45px">
+    <p id="header-info" class="navbar-brand"></p>
+    <a class="navbar-brand mb-3" href="/logout">Logout</a>
+</nav>
+
+<div class="admin-panel mt-3">
+    <div class="row">
+        <!-- Menu -->
+        <div class="menu col-md-3">
+            <nav class="nav flex-column">
+                <a id="adminInfoBtn" class="nav-link active btn btn-lg btn-primary btn-block text-left">User</a>
+            </nav>
+        </div>
+
+        <!-- Panel-->
+        <div class="panel col-md-9">
+
+            <h2 class="mb-3">User information-page</h2>
+
+            <div id="adminCrudPage" class="container">
+                <div class="tab-content mt-3">
+                    <!-- Users Table -->
+                    <div class="tab-pane active">
+                        <h4>About user</h4>
+
+                        <table class="table table-striped" id="adminInfoTable">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Age</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                            </tr>
+                            </thead>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
