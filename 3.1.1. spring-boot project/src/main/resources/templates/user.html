@@ -13,7 +13,7 @@
     <p th:text="'User login: ' + ${userInfo.getLogin()}"></p>
     <p th:text="'User password: ' + ${userInfo.getPassword()}"></p>
     <p th:text="'User age: ' + ${userInfo.getAge()}"></p>
-    Roles: <p th:each="role : ${userService.getRolesById(userInfo.getId())}"
+    Roles: <p th:each="role : ${userService.getRolesByUserId(userInfo.getId())}"
               th:value="${role.name}"
               th:text="${role.name}"></p>
 </div>

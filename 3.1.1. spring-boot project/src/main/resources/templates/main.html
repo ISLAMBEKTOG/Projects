@@ -51,7 +51,7 @@
                 <td th:text="${user.getPassword()}"></td>
                 <td th:text="${user.getAge()}"></td>
                 <td>
-                    <span th:each="role : ${userService.getRolesById(user.getId())}"
+                    <span th:each="role : ${userService.getRolesByUserId(user.getId())}"
                        th:value="${role.name}"
                        th:text="${role.name} + ' '"></span>
                 </td>

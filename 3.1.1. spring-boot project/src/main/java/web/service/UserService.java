@@ -24,5 +24,5 @@ public interface UserService {
 
     boolean existUserByLogin(String login);
 
-    List<Role> getRolesById(long id);
+    List<Role> getRolesByUserId(long id);
 }

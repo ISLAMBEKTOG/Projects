@@ -34,7 +34,7 @@ public class UserServiceImp implements UserService {
             /*Check for validation users */
             if (validateUser(user)) {
                 User curUser = getUserByLogin(user.getLogin());
-                List<Role> curRoles = getRolesById(curUser.getId());
+                List<Role> curRoles = getRolesByUserId(curUser.getId());
 
                 /*Check for the same roles*/
                 for (Role r : curRoles) {
@@ -97,7 +97,7 @@ public class UserServiceImp implements UserService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Role> getRolesById(long id) {
+    public List<Role> getRolesByUserId(long id) {
         return roleRepository.getRolesByUserId(id);
     }
 
