@@ -10,10 +10,10 @@ $(document).ready(function () {
         // DO GET
         $.ajax({
             type: "GET",
-            url: "read",
+            url: "/api/read",
             success: function (json) {
                 var tr = [];
-                var url = "/read/";
+                var url = "/api/read/";
                 for (var i = 0; i < json.length; i++) {
                     tr.push('<tr>');
                     tr.push('<td>' + json[i].id + '</td>');
@@ -39,7 +39,7 @@ $(document).ready(function () {
         // DO GET
         $.ajax({
             type: "GET",
-            url: "authorizedUser",
+            url: "/api/authorizedUser",
             async: false,
             success: function (json) {
                 var tr = [];
@@ -100,7 +100,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "save",
+            url: "/api/save",
             data: JSON.stringify(formData),
             dataType: 'json'
         }).always(function () {
@@ -115,7 +115,7 @@ $(document).ready(function () {
         // DO DELETE
         $.ajax({
             type: "DELETE",
-            url: "delete/" + id,
+            url: "/api/delete/" + id,
             cache: false,
             success: function () {
                 $('#deleteModal').modal('hide');
@@ -144,7 +144,7 @@ $(document).ready(function () {
         $.ajax({
             type: "PUT",
             contentType: "application/json",
-            url: "update",
+            url: "/api/update",
             data: JSON.stringify(formData),
             dataType: 'json'
         }).always(function () {
@@ -159,7 +159,7 @@ $(document).ready(function () {
         var roles = "";
         $.ajax({
             type: "GET",
-            url: "read/" + id + "/roles",
+            url: "/api/read/" + id + "/roles",
             async: false,
             success: function (result) {
                 $.each(result, function (i, data) {

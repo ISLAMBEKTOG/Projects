@@ -12,15 +12,15 @@ import web.service.UserService;
 import java.util.List;
 
 @RestController
-public class UserController {
+public class UserRestController {
     private final UserService userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserRestController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping(value = "/read")
+    @GetMapping(value = "/api/read")
     public ResponseEntity<List<User>> read() {
         final List<User> users = userService.readAllUsers();
 
@@ -29,7 +29,7 @@ public class UserController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/read/{id}")
+    @GetMapping(value = "/api/read/{id}")
     public ResponseEntity<User> readUser(@PathVariable(name = "id") long id) {
         final User user = userService.readUser(id);
 
@@ -38,7 +38,7 @@ public class UserController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/read/{id}/roles")
+    @GetMapping(value = "/api/read/{id}/roles")
     public ResponseEntity<List<Role>> readRoles(@PathVariable(name = "id") long id) {
         final List<Role> roles = userService.getRolesByUserId(id);
 
@@ -47,26 +47,26 @@ public class UserController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping(value = "/save")
+    @PostMapping(value = "/api/save")
     public ResponseEntity<?> create(@RequestBody UserForm userForm) {
         userService.createUser(userForm);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 
-    @PutMapping(value = "/update")
+    @PutMapping(value = "/api/update")
     public ResponseEntity<?> update(@RequestBody UserForm userForm) {
         userService.updateUser(userForm);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/api/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") long id) {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping(value = "/authorizedUser")
+    @GetMapping(value = "/api/authorizedUser")
     public ResponseEntity<User> authorizedUser() {
         final User user = userService.getUserByEmail(userService.curUserEmail());
 
