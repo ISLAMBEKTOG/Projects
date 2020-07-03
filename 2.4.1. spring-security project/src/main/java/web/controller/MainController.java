@@ -24,7 +24,7 @@ public class MainController {
     public ModelAndView userPage(@RequestParam String login,
                                  ModelAndView model){
         model.setViewName("user");
-        User user = userService.getUserByLogin(login);
+        User user = userService.getUserByUsername(login);
         model.addObject("userInfo", user);
         model.addObject("userService", userService);
 

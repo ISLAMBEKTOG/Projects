@@ -29,10 +29,10 @@ public class UserServiceImp implements UserService {
     @Transactional
     @Override
     public void addUser(User user, String role) {
-        if (existUserByLogin(user.getLogin())) {
+        if (existUserByUsername(user.getUsername())) {
             /*Check for validation users */
             if (validateUser(user)) {
-                User curUser = getUserByLogin(user.getLogin());
+                User curUser = getUserByUsername(user.getUsername());
                 List<Role> curRoles = getRolesById(curUser.getId());
 
                 /*Check for the same roles*/
@@ -76,8 +76,8 @@ public class UserServiceImp implements UserService {
 
     @Transactional(readOnly = true)
     @Override
-    public User getUserByLogin(String login) {
-        return userDAO.getUserByLogin(login);
+    public User getUserByUsername(String username) {
+        return userDAO.getUserByUsername(username);
     }
 
     @Transactional(readOnly = true)
@@ -104,10 +104,10 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public boolean existUserByLogin(String login) {
+    public boolean existUserByUsername(String username) {
         List<User> users = getAllUsers();
         for (User u : users) {
-            if (u.getLogin().equals(login)) {
+            if (u.getUsername().equals(username)) {
                 return true;
             }
         }

@@ -26,12 +26,12 @@ public class UserController {
     }
 
     @PostMapping(value = "/admin/add")
-    public String addUser(@RequestParam String login,
+    public String addUser(@RequestParam String username,
                           @RequestParam String password,
                           @RequestParam int age,
                           @RequestParam String role) {
 
-        User user = new User(login, password, age);
+        User user = new User(username, password, age);
 
         userService.addUser(user, role);
 
@@ -60,11 +60,11 @@ public class UserController {
 
     @PostMapping(value = "admin/edit/submit")
     public String updateUser(@RequestParam long id,
-                             @RequestParam String login,
+                             @RequestParam String username,
                              @RequestParam String password,
                              @RequestParam int age) {
 
-        User user = new User(id, login, password, age);
+        User user = new User(id, username, password, age);
 
         userService.updateUser(user);
 

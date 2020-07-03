@@ -17,7 +17,7 @@
 </div>
 <div>
     <p>User id: ${userInfo.id}</p>
-    <p>User login: ${userInfo.login}</p>
+    <p>User username: ${userInfo.username}</p>
     <p>User password: ${userInfo.password}</p>
     <p>User age: ${userInfo.age}</p>
     <p>Roles: </p>

@@ -11,7 +11,7 @@
 <div>
     <form method="post" action="${pageContext.request.contextPath}/admin/edit/submit">
         <input type="hidden" name="id" value="${userId}">
-        Login: <input type="text" name="login" value="${user.login}"/><br/><br/>
+        Login: <input type="text" name="username" value="${user.username}"/><br/><br/>
 
         Password: <input type="text" name="password" value="${user.password}"/><br/><br/>
 

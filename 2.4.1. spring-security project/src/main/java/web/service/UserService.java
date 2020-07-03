@@ -18,11 +18,11 @@ public interface UserService {
 
     List<Role> getAllRoles();
 
-    User getUserByLogin(String login);
+    User getUserByUsername(String username);
 
     boolean validateUser(User user);
 
-    boolean existUserByLogin(String login);
+    boolean existUserByUsername(String username);
 
     List<Role> getRolesById(long id);
 }

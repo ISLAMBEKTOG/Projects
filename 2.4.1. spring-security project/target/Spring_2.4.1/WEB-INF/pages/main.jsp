@@ -13,7 +13,7 @@
 </div>
 <div>
     <form method="post" action="${pageContext.request.contextPath}/admin/add">
-        Login: <input type="text" name="login"/><br/><br/>
+        Login: <input type="text" name="username"/><br/><br/>
 
         Password: <input type="text" name="password"/><br/><br/>
 
@@ -49,7 +49,7 @@
             <c:forEach var="user" items="${userService.allUsers}">
                 <tr>
                     <td>${user.id}</td>
-                    <td>${user.login}</td>
+                    <td>${user.username}</td>
                     <td>${user.password}</td>
                     <td>${user.age}</td>
                     <td>
